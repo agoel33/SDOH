@@ -6,7 +6,7 @@ import re
 openai.api_key = "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"
 
 # File path and prompt template
-file_path = 'C:/Users/Ajay_XPS_9380/desktop/discharge_with_social_final.csv'
+file_path = '../discharge_with_social_final.csv'
 
 # Read the CSV file and extract the first ten entries
 df = pd.read_csv(file_path)
@@ -17,7 +17,7 @@ section_pattern = r'\b[A-Z][a-zA-Z]*(?: [A-Z][a-zA-Z]*)*:'
 # Open the output file in write mode
 with open(output_file_path, 'a', encoding='utf-8') as output_file:
     section_pattern = r'\b[A-Z][a-zA-Z]*(?: [A-Z][a-zA-Z]*)*:'
-    for i in range(30):
+    for i in range(1):
         print(i)
         note = df.loc[i]['text']
         section_headers = [(match.group(), match.start(), match.end()) for match in re.finditer(section_pattern, note)]
