@@ -13,10 +13,10 @@ models = ['MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli', 'sileod/deberta-v3-bas
           "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7", "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli", "joeddav/xlm-roberta-large-xnli "
           "optimum/distilbert-base-uncased-mnli"]
 for mdl in model:
+  print("mdl")
   classifier = pipeline("zero-shot-classification",
                         model= mdl,
                         device_map= "auto")
-
   model_classification = []
   for i in range(5):
     print(i)
@@ -28,7 +28,6 @@ for mdl in model:
       model_classification.append(classifier(sequence_to_classify, candidate_labels))
 
   output_file_path = f'../SDOH/{mdl}_relative_care.json'
-
   with open(output_file_path, 'w') as fout:
     json.dump(model_classification, fout)
   print(f"{mdl} is done")
