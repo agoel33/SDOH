@@ -12,7 +12,7 @@ df = pd.read_csv(file_path)
 models = ['MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli', 'sileod/deberta-v3-base-tasksource-nli', "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli",
           "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7", "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli", "joeddav/xlm-roberta-large-xnli "
           "optimum/distilbert-base-uncased-mnli"]
-for mdl in model:
+for mdl in models:
   print("mdl")
   classifier = pipeline("zero-shot-classification",
                         model= mdl,
