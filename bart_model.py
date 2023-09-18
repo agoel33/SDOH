@@ -15,8 +15,8 @@ does_not_support_gpu = ['MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',  'sileod
 permission_error = [ "joeddav/xlm-roberta-large-xnli"]
 
 token_too_long = ["DAMO-NLP-SG/zero-shot-classify-SSTuning-base"]
-possible_labels = [['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"], 
-["inprisonment or other incarceration", "not specified", "no impisonment or other incarceration"]]
+possible_labels = [["homeless", "not specified", "not homeless"], ["food insecure", "not specified", "not food insecure"], ["low income", "not specified", "not low income"], 
+["marital estrangement", "not specified", "no marital estrangement"]]
 models = ["valhalla/distilbart-mnli-12-1", "valhalla/distilbart-mnli-12-9", "HiTZ/A2T_RoBERTa_SMFA_WikiEvents-arg_ACE-arg"]
 
 for label in possible_labels:
