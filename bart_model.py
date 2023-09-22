@@ -10,17 +10,26 @@ file_path = 'discharge_with_social_final.csv'
 df = pd.read_csv(file_path)
 
 does_not_support_gpu = ['MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',  'sileod/deberta-v3-base-tasksource-nli', "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli",
-          "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7", "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli", "NDugar/v2xl-again-mnli", "NDugar/1epochv3"]
+          "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7", "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli", "NDugar/v2xl-again-mnli", "NDugar/1epochv3", 
+          "KheireddineDaouadi/ZeroAraElectra", "cointegrated/rubert-base-cased-nli-threeway", "cross-encoder/nli-deberta-v3-base", "seduerr/paiintent", 
+          "typeform/distilbert-base-uncased-mnli", "MoritzLaurer/ernie-m-large-mnli-xnli", "mjwong/e5-large-mnli", "claritylab/zero-shot-vanilla-binary-bert", 
+          "claritylab/zero-shot-vanilla-bi-encoder", "mjwong/contriever-msmarco-mnli", "mjwong/bge-large-en-mnli-anli"]
 permission_error = [ "joeddav/xlm-roberta-large-xnli"]
-token_too_long = ["DAMO-NLP-SG/zero-shot-classify-SSTuning-base", "morit/english_xlm_xnli", "BSC-LT/sciroshot "]
+other_problems = ["osanseviero/test_zero", "arnov/name-gender", "Xenova/distilbert-base-uncased-mnli", "Atharva192003/zero-shot-classfier"]
+needs_tensor_flow_weights = ["typeform/roberta-large-mnli"]
 
-models_used = ["valhalla/distilbart-mnli-12-1", "valhalla/distilbart-mnli-12-9", "HiTZ/A2T_RoBERTa_SMFA_WikiEvents-arg_ACE-arg"]
+gigantic_model = ["AntoineBlanot/flan-t5-xxl-classif-3way"]
+token_too_long = ["DAMO-NLP-SG/zero-shot-classify-SSTuning-base", "morit/english_xlm_xnli", "BSC-LT/sciroshot"]
 
-possible_labels = [["employed", "not specified", "unemployed"], 
+models_used = ["valhalla/distilbart-mnli-12-1", "valhalla/distilbart-mnli-12-9", "HiTZ/A2T_RoBERTa_SMFA_WikiEvents-arg_ACE-arg", "eleldar/theme-classification", "Narsil/bart-large-mnli-opti"]
+
+possible_labels = [['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"], 
 ["inprisonment or other incarceration", "not specified", "no impisonment or other incarceration"], ["homeless", "not specified", "not homeless"], 
 ["food insecure", "not specified", "not food insecure"], ["low income", "not specified", "not low income"], ["marital estrangement", "not specified", "no marital estrangement"]]
 
-models = ["eleldar/theme-classification", "Narsil/bart-large-mnli-opti"]
+models = ["ClaudeYang/awesome_fb_model", "cross-encoder/nli-MiniLM2-L6-H768", "cross-encoder/nli-distilroberta-base", "cross-encoder/nli-roberta-base", 
+"joeddav/bart-large-mnli-yahoo-answers", "navteca/bart-large-mnli", "oigele/Fb_improved_zeroshot", "HiTZ/A2T_RoBERTa_SMFA_ACE-arg", "HiTZ/A2T_RoBERTa_SMFA_TACRED-re",
+"MoritzLaurer/xlm-v-base-mnli-xnli", "AyoubChLin/bart_large_mnli_finetune_cnn_news", "AyoubChLin/BART-mnli_cnn_256", "sjrhuschlee/flan-t5-base-mnli"]
 
 
 for label in possible_labels:
