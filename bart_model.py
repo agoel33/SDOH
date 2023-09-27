@@ -44,12 +44,12 @@ new_models = []
 
 for label in possible_labels:
   print(f"{label}")
-  for mdl in new_models:
+  for mdl in models:
     print(f"{mdl}")
     classifier = pipeline("zero-shot-classification", model= mdl,
                           device_map= "auto")
     model_classification = []
-    for i in range(10):
+    for i in range(50):
       print(i)
       entry = df.loc[i]['text']
       sentences = sent_tokenize(entry)
