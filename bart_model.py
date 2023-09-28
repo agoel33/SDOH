@@ -26,20 +26,23 @@ token_too_long = ["DAMO-NLP-SG/zero-shot-classify-SSTuning-base", "morit/english
 models_used = ["valhalla/distilbart-mnli-12-1", "valhalla/distilbart-mnli-12-9", "HiTZ/A2T_RoBERTa_SMFA_WikiEvents-arg_ACE-arg", "eleldar/theme-classification", "Narsil/bart-large-mnli-opti",
 "ClaudeYang/awesome_fb_model", "cross-encoder/nli-MiniLM2-L6-H768", "cross-encoder/nli-distilroberta-base", "cross-encoder/nli-roberta-base", 
 "joeddav/bart-large-mnli-yahoo-answers", "navteca/bart-large-mnli", "oigele/Fb_improved_zeroshot", "HiTZ/A2T_RoBERTa_SMFA_ACE-arg", "HiTZ/A2T_RoBERTa_SMFA_TACRED-re",
-"MoritzLaurer/xlm-v-base-mnli-xnli", "AyoubChLin/bart_large_mnli_finetune_cnn_news", "AyoubChLin/BART-mnli_cnn_256", "sjrhuschlee/flan-t5-base-mnli"]
-
-"LABELS"
-possible_labels = [['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"], 
-["inprisonment or other incarceration", "not specified", "no impisonment or other incarceration"], ["homeless", "not specified", "not homeless"], 
-["food insecure", "not specified", "not food insecure"], ["low income", "not specified", "not low income"], ["marital estrangement", "not specified", "no marital estrangement"]]
-
-
-"CURRENT MODELS"
-models = ["TheBloke/Llama-2-7B-GPTQ", "TheBloke/Project-Baize-v2-7B-GPTQ", "HWERI/pythia-1.4b-deduped-sharegpt", "aisquared/chopt-1_3b", "breadlicker45/dough-instruct-base-001", 
+"MoritzLaurer/xlm-v-base-mnli-xnli", "AyoubChLin/bart_large_mnli_finetune_cnn_news", "AyoubChLin/BART-mnli_cnn_256", "sjrhuschlee/flan-t5-base-mnli",  "HWERI/pythia-1.4b-deduped-sharegpt", "aisquared/chopt-1_3b", "breadlicker45/dough-instruct-base-001", 
 "MBZUAI/LaMini-Neo-1.3B", "MayaPH/FinOPT-Franklin", "pszemraj/pythia-31m-KI_v1-2048-scratch", "BreadAi/PM_modelV2", "concedo/OPT-19M-ChatSalad"]
 
+"LABELS"
+possible_labels = [
+["food insecure", "not specified", "not food insecure"], ["low income", "not specified", "not low income"], ["marital estrangement", "not specified", "no marital estrangement"]]
+
+temp_no_labels = [["homeless", "not specified", "not homeless"], ['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"], 
+["inprisonment or other incarceration", "not specified", "no impisonment or other incarceration"]]
+
+
+probelems = ["TheBloke/Project-Baize-v2-7B-GPTQ"]
+"CURRENT MODELS"
+models = [ "TheBloke/Llama-2-7B-GPTQ"]
+
 "TEST MODELS"
-new_models = []
+
 
 
 for label in possible_labels:
