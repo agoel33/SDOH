@@ -30,22 +30,22 @@ models_used = ["valhalla/distilbart-mnli-12-1", "valhalla/distilbart-mnli-12-9",
 "MBZUAI/LaMini-Neo-1.3B", "MayaPH/FinOPT-Franklin", "pszemraj/pythia-31m-KI_v1-2048-scratch", "BreadAi/PM_modelV2", "concedo/OPT-19M-ChatSalad"]
 
 "LABELS"
-possible_labels = [
-["food insecure", "not specified", "not food insecure"], ["low income", "not specified", "not low income"], ["marital estrangement", "not specified", "no marital estrangement"]]
+possible_labels = [["food insecure", "not specified", "not food insecure"], ["low income", "not specified", "not low income"], ["marital estrangement", "not specified", "no marital estrangement"], 
+["homeless", "not specified", "not homeless"], ['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"]]
 
-temp_no_labels = [["homeless", "not specified", "not homeless"], ['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"], 
-["inprisonment or other incarceration", "not specified", "no impisonment or other incarceration"]]
+temp_no_labels = [
+["imprisonment or other incarceration", "not specified", "no imprisonment or other incarceration"]]
 
 
 probelems = ["TheBloke/Project-Baize-v2-7B-GPTQ"]
 "CURRENT MODELS"
-models = [ "TheBloke/Llama-2-7B-GPTQ"]
+models = ["HiTZ/A2T_RoBERTa_SMFA_TACRED-re"]
 
 "TEST MODELS"
 
 
 
-for label in possible_labels:
+for label in temp_no_labels:
   print(f"{label}")
   for mdl in models:
     print(f"{mdl}")
