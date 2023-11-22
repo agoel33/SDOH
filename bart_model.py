@@ -63,6 +63,7 @@ for label in temp_no_labels:
     parts = mdl.split("/")
     new_string = "".join(parts)
     new_string = new_string.replace("-", "_")
+    
     output_file_path = f'{new_string}_{label[0]}.json'
     with open(output_file_path, 'w') as fout:
       json.dump(model_classification, fout)
