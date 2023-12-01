@@ -9,17 +9,9 @@ import pandas as pd
 import transformers
 from transformers import pipeline
 from nltk.tokenize import sent_tokenize
-saved_net = BertRegressor.load_from_checkpoint("/home/user/Vornoi/QA/vornoi/uh138i3k/checkpoints/epoch=14-step=5625.ckpt")
-def run_router(input):
-    #Router
-    #saved net is a bert model. tokenize input and run it through the model
-    input_ids = tokenizer.encode(input, return_tensors='pt').to(saved_net.device)
-    attention_mask = torch.ones(input_ids.shape, dtype=torch.long).to(input_ids.device)
-    output = saved_net(input_ids, attention_mask)
-    output = output[:, 1:]
-    print(output)
-    best_model = model_names[output.argmax()]
-    return best_model
+
+
+
 tokenizer = AutoTokenizer.from_pretrained('prajjwal1/bert-medium', use_fast = False)
 model_names = [
     #XXS (1b order)
