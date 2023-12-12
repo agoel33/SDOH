@@ -175,3 +175,62 @@ for models in model_names[1:]:
 big_df.to_csv('herd_models.csv', index= False)
 big_df.to_json('herd_models.json', index = False)
 
+for models in model_names[1:5]:
+    classifier = pipeline("zero-shot-classification", model = models, device_map= "auto")
+    candidate_label = ["homeless", "not specified", "not homeless"]
+    output = classifier(sequences_without_prompt[:], candidate_label)
+    print("done")
+    order = []
+    sequence_specific = []
+    for i in range(len(output)):
+        sequence_specific.append(output[:][i]['sequence'])
+        order.append(output[:][i]['labels'])
+    data = {'Sequence': sequence_specific, str(models): order}
+    new_df = pd.DataFrame(data)
+    big_df = big_df.merge(new_df)
+    big_df = big_df.drop_duplicates(subset = 'Sequence')
+    print("dataframe is done")
+    print(big_df)
+
+big_df.to_csv('herd_models.csv', index= False)
+big_df.to_json('herd_models.json', index = False)
+
+for models in model_names[5:9]:
+    classifier = pipeline("zero-shot-classification", model = models, device_map= "auto")
+    candidate_label = ["homeless", "not specified", "not homeless"]
+    output = classifier(sequences_without_prompt[:], candidate_label)
+    print("done")
+    order = []
+    sequence_specific = []
+    for i in range(len(output)):
+        sequence_specific.append(output[:][i]['sequence'])
+        order.append(output[:][i]['labels'])
+    data = {'Sequence': sequence_specific, str(models): order}
+    new_df = pd.DataFrame(data)
+    big_df = big_df.merge(new_df)
+    big_df = big_df.drop_duplicates(subset = 'Sequence')
+    print("dataframe is done")
+    print(big_df)
+
+big_df.to_csv('herd_models.csv', index= False)
+big_df.to_json('herd_models.json', index = False)
+
+for models in model_names[9:]:
+    classifier = pipeline("zero-shot-classification", model = models, device_map= "auto")
+    candidate_label = ["homeless", "not specified", "not homeless"]
+    output = classifier(sequences_without_prompt[:], candidate_label)
+    print("done")
+    order = []
+    sequence_specific = []
+    for i in range(len(output)):
+        sequence_specific.append(output[:][i]['sequence'])
+        order.append(output[:][i]['labels'])
+    data = {'Sequence': sequence_specific, str(models): order}
+    new_df = pd.DataFrame(data)
+    big_df = big_df.merge(new_df)
+    big_df = big_df.drop_duplicates(subset = 'Sequence')
+    print("dataframe is done")
+    print(big_df)
+
+big_df.to_csv('herd_models.csv', index= False)
+big_df.to_json('herd_models.json', index = False)
