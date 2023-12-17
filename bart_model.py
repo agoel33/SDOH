@@ -34,7 +34,7 @@ possible_labels = [["food insecure", "not specified", "not food insecure"], ["lo
 ["homeless", "not specified", "not homeless"], ['relative needing care', 'no relative needing care', 'not specified'], ["employed", "not specified", "unemployed"]]
 
 temp_no_labels = [
-["imprisonment or other incarceration", "not specified", "no imprisonment or other incarceration"]]
+["inprisonment or other incarceration", "not specified", "no inprisonment or other incarceration"]]
 
 
 probelems = ["TheBloke/Project-Baize-v2-7B-GPTQ"]
