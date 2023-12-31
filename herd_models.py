@@ -143,7 +143,7 @@ for i in range(50):
 
 
 classifier = pipeline("zero-shot-classification", model = 'TheBloke/Llama-2-7b-Chat-GPTQ', device_map= "auto")
-candidate_label = ["low income", "not specified", "not low income"]
+candidate_label = ['relative needing care', 'no relative needing care', 'not specified']
 output = classifier(sequences_without_prompt[:], candidate_label)
 order = []
 sequence_specific = []
@@ -171,8 +171,8 @@ for models in model_names[1:]:
     print("dataframe is done")
     print(big_df)
 
-big_df.to_csv('herd_models_low_income.csv', index= False)
-big_df.to_json('herd_models_low_income.json', index = False)
+big_df.to_csv('herd_models_relative_needing_care.csv', index= False)
+big_df.to_json('herd_models_relative_needing_care.json', index = False)
 
 for models in model_names[1:5]:
     classifier = pipeline("zero-shot-classification", model = models, device_map= "auto")
@@ -190,8 +190,8 @@ for models in model_names[1:5]:
     print("dataframe is done")
     print(big_df)
 
-big_df.to_csv('herd_models_low_income.csv', index= False)
-big_df.to_json('herd_models_low_income.json', index = False)
+big_df.to_csv('herd_models_relative_needing_care.csv', index= False)
+big_df.to_json('herd_models_relative_needing_care.json', index = False)
 
 for models in model_names[5:9]:
     classifier = pipeline("zero-shot-classification", model = models, device_map= "auto")
@@ -209,8 +209,8 @@ for models in model_names[5:9]:
     print("dataframe is done")
     print(big_df)
 
-big_df.to_csv('herd_models_low_income.csv', index= False)
-big_df.to_json('herd_models_low_income.json', index = False)
+big_df.to_csv('herd_models_relative_needing_care.csv', index= False)
+big_df.to_json('herd_models_relative_needing_care.json', index = False)
 
 for models in model_names[9:]:
     classifier = pipeline("zero-shot-classification", model = models, device_map= "auto")
@@ -228,5 +228,5 @@ for models in model_names[9:]:
     print("dataframe is done")
     print(big_df)
 
-big_df.to_csv('herd_models_low_income.csv', index= False)
-big_df.to_json('herd_models_low_income.json', index = False)
+big_df.to_csv('herd_models_relative_needing_care.csv', index= False)
+big_df.to_json('herd_models_relative_needing_care.json', index = False)
