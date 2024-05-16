@@ -30,10 +30,11 @@ device_map = "auto"
 load_in_4bit = True
 load_in_8bit = False
 
-df_train = pd.read_json('homelessnes_training_dataset.json')
-
 num_train_samples = int(2e5)
 num_val_samples = int(5e5)
+
+def find_last_index(lst, item):
+    return max((index for index, value in enumerate(lst) if value == item), default=-1)
 
 def group_texts_mask_non_f1(examples, block_size = 128):
     
@@ -176,6 +177,3 @@ trainer.train(
 
 eval_metrics = trainer.evaluate()
 print(eval_metrics)
-# %%
-
-'teknium/OpenHermes-2-Mistral-7B'
