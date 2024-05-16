@@ -25,7 +25,7 @@ import numpy as np
 import sklearn
 
 base_model = "teknium/OpenHermes-2-Mistral-7B"
-tokenizer_base = 'teknium/OpenHermes-2-Mistral-7B'
+tokenizer_base = "teknium/OpenHermes-2-Mistral-7B"
 device_map = "auto"
 load_in_4bit = True
 load_in_8bit = False
@@ -70,6 +70,8 @@ lora_config = LoraConfig(
             modules_to_save=["ln_f"],
         )
 
+access_token = "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"
+
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_base)
 tokenizer.pad_token = tokenizer.eos_token
 
@@ -78,29 +80,33 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16,
     device_map=device_map,
     quantization_config=quant_config,
-    trust_remote_code=True,
+    trust_remote_code=True
 )
 
 model = get_peft_model(model, lora_config)
 
 #%%
 train_dataset = load_dataset('json', 
-                                data_files='../data_spreadsheets/adapter_responses_train.json',
+                                data_files='homelessness_training_dataset_final_1.json',
                                 # data_files='../data_spreadsheets/ADAM_train.json',
                                 # data_files='../data_spreadsheets/question_and_model_name_train.json',
                                 split='train',
                                 )
 
 val_dataset = load_dataset('json',
-                            data_files='../data_spreadsheets/adapter_responses_val.json',
+                            data_files='homelessness_validation_dataset_final_1.json',
                             # data_files='../data_spreadsheets/ADAM_val.json',
                             # data_files='../data_spreadsheets/question_and_model_name_val.json',
                             split='train',
                             )
 
+
+
 def tokenize_function(example):
-    
-    tokenized_output = tokenizer(example["text"], truncation=True, max_length=512, padding=False)
+    values_list = list(example['text'][0].values())# Accessing the "text" column directly as a list
+    print("Texts before tokenization:", values_list)
+
+    tokenized_output = tokenizer(values_list, truncation=True, max_length=512, padding=False)
     labels = [[-100] * find_last_index(tokenized_text, 28793) + tokenized_text[find_last_index(tokenized_text, 28793):] for tokenized_text in tokenized_output['input_ids']]
     # labels = [[-100] * find_second_last_index(tokenized_text, 28740) + tokenized_text[find_second_last_index(tokenized_text, 28740):] for tokenized_text in result['input_ids']]
 
@@ -113,8 +119,8 @@ def tokenize_function(example):
 # train_dataset = train_dataset.select(list(range(min(num_train_samples, len(train_dataset))))).map(tokenize_function, batched=True, num_proc=8, remove_columns=["text"]).map(group_texts_mask_non_f1, batched=True, num_proc=20)
 # val_dataset = val_dataset.select(list(range(min(num_val_samples, len(val_dataset))))).map(tokenize_function, batched=True, num_proc=8, remove_columns=["text"]).map(group_texts_mask_non_f1, batched=True, num_proc=20)
 
-train_dataset = train_dataset.select(list(range(min(num_train_samples, len(train_dataset))))).map(tokenize_function, batched=True, num_proc=20, remove_columns=["text", 'question_id', 'model_ix', 'label', 'dataset_ix']).map(group_texts_mask_non_f1, batched=True, num_proc=20)
-val_dataset = val_dataset.select(list(range(min(num_val_samples, len(val_dataset))))).map(tokenize_function, batched=True, num_proc=20, remove_columns=["text", 'question_id', 'model_ix', 'label', 'dataset_ix']).map(group_texts_mask_non_f1, batched=True, num_proc=20)
+train_dataset = train_dataset.select(list(range(min(num_train_samples, len(train_dataset))))).map(tokenize_function, batched=True, num_proc=20, remove_columns=['index', 'Sentence', 'Prompt', 'Model Response', 'text']).map(group_texts_mask_non_f1, batched=True, num_proc=20)
+val_dataset = val_dataset.select(list(range(min(num_val_samples, len(val_dataset))))).map(tokenize_function, batched=True, num_proc=20, remove_columns=['index', 'Sentence', 'Prompt', 'Model Response', 'text']).map(group_texts_mask_non_f1, batched=True, num_proc=20)
 # #%%
 
 #%%
@@ -158,7 +164,6 @@ training_args = TrainingArguments(
 )
 
 data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
-
 #%%
 trainer = Trainer(
     model=model,
@@ -166,8 +171,8 @@ trainer = Trainer(
     data_collator=data_collator,
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
-    compute_metrics=compute_metrics,
-    preprocess_logits_for_metrics=preprocess_logits_for_metrics
+    # compute_metrics=compute_metrics,
+    #preprocess_logits_for_metrics=preprocess_logits_for_metrics
 )
 
 #%%
