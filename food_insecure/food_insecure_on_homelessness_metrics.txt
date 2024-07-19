@@ -1,0 +1,5 @@
+Test loss: 1.03949
+Test accuracy: 0.80933
+Test F1 score: 0.80790
+Test precision: 0.81876
+Test recall: 0.80933
